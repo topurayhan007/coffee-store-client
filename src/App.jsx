@@ -1,13 +1,14 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import CoffeeContainer from "./components/CoffeeContainer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="flex justify-center">
-      <div className="flex  justify-center flex-col items-center">
-        <h1 className="text-purple-500 text-6xl">Hot Hot Cold Coffee:</h1>
-        <CoffeeContainer></CoffeeContainer>
-      </div>
+    <div className="flex justify-center flex-col ">
+      <Header></Header>
+      <Outlet></Outlet>
+      <Footer></Footer>
     </div>
   );
 }
