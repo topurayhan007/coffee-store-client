@@ -9,7 +9,7 @@ const CoffeeContainer = () => {
 
   return (
     <div
-      className="relative w-full mt-28 pb-28"
+      className="w-full mt-28 pb-28"
       style={{
         backgroundImage: `url("/images/more/1.png")`,
         width: "100%",
