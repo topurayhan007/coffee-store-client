@@ -1,9 +1,11 @@
 import { Link, useLoaderData } from "react-router-dom";
 import CoffeeCard from "./CoffeeCard";
 import { CgCoffee } from "react-icons/cg";
+import { useState } from "react";
 
 const CoffeeContainer = () => {
-  const coffees = useLoaderData();
+  const loadedCoffees = useLoaderData();
+  const [coffees, setCoffees] = useState(loadedCoffees);
 
   return (
     <div className="flex justify-center flex-col items-center mt-28">
@@ -20,7 +22,12 @@ const CoffeeContainer = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {coffees.map((coffee) => (
-            <CoffeeCard key={coffee._id} coffee={coffee}></CoffeeCard>
+            <CoffeeCard
+              key={coffee._id}
+              coffee={coffee}
+              coffees={coffees}
+              setCoffees={setCoffees}
+            ></CoffeeCard>
           ))}
         </div>
       </div>
