@@ -1,6 +1,9 @@
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateCoffee = () => {
+  const loadedCoffee = useLoaderData();
+
   const handleUpdateCoffee = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -12,7 +15,7 @@ const UpdateCoffee = () => {
     const details = form.details.value;
     const photo = form.photo.value;
 
-    const newCoffee = {
+    const updatedCoffee = {
       name,
       quantity,
       supplier,
@@ -21,27 +24,32 @@ const UpdateCoffee = () => {
       details,
       photo,
     };
-    console.log(newCoffee);
+    console.log(updatedCoffee);
 
     // send data to server
-    fetch("http://localhost:5000/coffee", {
+    fetch(`http://localhost:5000/coffee/${loadedCoffee._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newCoffee),
+      body: JSON.stringify(updatedCoffee),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.acknowledged > 0) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
-            text: "Coffee added successfully!",
+            text: "Coffee updated successfully!",
             icon: "success",
             confirmButtonText: "Okay",
           });
-          form.reset();
+        } else {
+          Swal.fire(
+            "Error!",
+            "The coffee couldn't be updated. Please try again!",
+            "error"
+          );
         }
       });
   };
@@ -68,6 +76,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="name"
+                  defaultValue={loadedCoffee.name}
                   placeholder="Enter coffee name"
                   className="input input-bordered rounded w-full"
                 />
@@ -83,6 +92,7 @@ const UpdateCoffee = () => {
                 <input
                   type="number"
                   name="quantity"
+                  defaultValue={loadedCoffee.quantity}
                   placeholder="Enter coffee quantity"
                   className="input input-bordered rounded w-full"
                 />
@@ -98,6 +108,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="supplier"
+                  defaultValue={loadedCoffee.supplier}
                   placeholder="Enter coffee supplier"
                   className="input input-bordered rounded w-full"
                 />
@@ -111,6 +122,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="taste"
+                  defaultValue={loadedCoffee.taste}
                   placeholder="Enter coffee taste"
                   className="input input-bordered rounded w-full"
                 />
@@ -126,6 +138,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="category"
+                  defaultValue={loadedCoffee.category}
                   placeholder="Enter coffee category"
                   className="input input-bordered rounded w-full"
                 />
@@ -141,6 +154,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="details"
+                  defaultValue={loadedCoffee.details}
                   placeholder="Enter coffee details"
                   className="input input-bordered rounded w-full"
                 />
@@ -154,6 +168,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="photo"
+                  defaultValue={loadedCoffee.photo}
                   placeholder="Enter photo URL"
                   className="input input-bordered rounded w-full"
                 />

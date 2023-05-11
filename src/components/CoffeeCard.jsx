@@ -3,9 +3,10 @@ import { AiFillEye } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const CoffeeCard = ({ coffee }) => {
-  const { name, taste, category, photo } = coffee;
+  const { _id, name, taste, category, photo } = coffee;
 
   const handleDelete = (_id) => {
     console.log(_id);
@@ -59,9 +60,11 @@ const CoffeeCard = ({ coffee }) => {
         <button className="btn text-xl px-3 py-2 border-0 text-white bg-[#D2B48C] hover:bg-[#f7d4a6]">
           <AiFillEye />
         </button>
-        <button className="btn text-xl px-3 py-2 text-white">
-          <MdModeEditOutline />
-        </button>
+        <Link to={`/updateCoffee/${_id}`}>
+          <button className="btn text-xl px-3 py-2 text-white">
+            <MdModeEditOutline />
+          </button>
+        </Link>
         <button
           onClick={() => {
             handleDelete(coffee._id);
