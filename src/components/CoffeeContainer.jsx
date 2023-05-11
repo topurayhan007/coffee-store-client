@@ -13,7 +13,9 @@ const CoffeeContainer = () => {
       style={{
         backgroundImage: `url("/images/more/1.png")`,
         width: "100%",
+        height: "100%",
         backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="flex justify-center flex-col items-center">
