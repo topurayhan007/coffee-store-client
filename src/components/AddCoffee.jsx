@@ -39,7 +39,7 @@ const AddCoffee = () => {
             title: "Success!",
             text: "Coffee added successfully!",
             icon: "success",
-            confirmButtonText: "OK",
+            confirmButtonText: "Okay",
           });
           form.reset();
         }
