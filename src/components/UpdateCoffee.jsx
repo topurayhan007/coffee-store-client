@@ -1,5 +1,6 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { HiArrowNarrowLeft } from "react-icons/hi";
 
 const UpdateCoffee = () => {
   const loadedCoffee = useLoaderData();
@@ -55,8 +56,17 @@ const UpdateCoffee = () => {
   };
 
   return (
-    <div className="flex justify-center mb-28 mt-12">
-      <div className="flex justify-center items-center flex-col lg:w-[1320px] bg-[#F4F3F0] rounded px-28 py-16">
+    <div className="flex justify-center flex-col items-center mb-28 mt-12">
+      <div className="flex lg:w-[1320px] justify-start mb-12">
+        <Link to="/">
+          <button className="flex justify-center items-center text-2xl">
+            {" "}
+            <HiArrowNarrowLeft className="me-2" />
+            Back to home
+          </button>
+        </Link>
+      </div>
+      <div className="flex justify-center items-center flex-col lg:w-[1320px] bg-[#F4F3F0] rounded px-28 py-16 z-50">
         <h2 className="text-5xl font-bold text-[#374151] drop-shadow-2xl shadow-black">
           Update Coffee
         </h2>
@@ -180,10 +190,13 @@ const UpdateCoffee = () => {
               type="submit"
               className="btn hover:bg-[#b9986a] border-2 bg-[#D2B48C] border-black text-black text-2xl normal-case rounded w-full"
             >
-              Add Coffee
+              Update Coffee Details
             </button>
           </div>
         </form>
+      </div>
+      <div className="absolute">
+        <img src="/images/more/11.png" alt="" />
       </div>
     </div>
   );
