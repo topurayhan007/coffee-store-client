@@ -2,9 +2,43 @@
 import { AiFillEye } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee }) => {
   const { name, taste, category, photo } = coffee;
+
+  const handleDelete = (_id) => {
+    console.log(_id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/coffee/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "The coffee has been deleted.", "success");
+            } else {
+              Swal.fire(
+                "Error!",
+                "The coffee couldn't be deleted. Please try again!",
+                "error"
+              );
+            }
+          });
+      }
+    });
+  };
+
   return (
     <div className="card card-side bg-[#F5F4F1] rounded-lg py-5">
       <figure className="ps-3">
@@ -28,7 +62,12 @@ const CoffeeCard = ({ coffee }) => {
         <button className="btn text-xl px-3 py-2 text-white">
           <MdModeEditOutline />
         </button>
-        <button className="btn text-xl px-3 py-2 text-white btn-error">
+        <button
+          onClick={() => {
+            handleDelete(coffee._id);
+          }}
+          className="btn text-xl px-3 py-2 text-white btn-error"
+        >
           <FaTrash />
         </button>
       </div>
