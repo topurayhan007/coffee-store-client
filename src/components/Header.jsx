@@ -5,7 +5,7 @@ const Header = () => {
       style={{
         backgroundImage: `url("/images/more/15.jpg")`,
         width: "100%",
-        height: "100px",
+        height: "90px",
         backgroundSize: "cover",
       }}
     >
