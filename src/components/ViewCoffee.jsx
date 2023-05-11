@@ -16,11 +16,11 @@ const ViewCoffee = () => {
           </button>
         </Link>
       </div>
-      <div className="card card-side bg-[#F5F4F1] rounded-lg py-10 mt-12 lg:w-[1320px]">
-        <figure className="h-96 flex-1">
-          <img src={photo} alt={name} className="w-1/2" />
+      <div className="card card-side bg-[#F5F4F1] rounded-lg py-12 mt-12 lg:w-[1320px]">
+        <figure className="h-96">
+          <img src={photo} alt={name} className="h-96 px-14" />
         </figure>
-        <div className="card-body px-8 me-8 flex-1">
+        <div className="card-body px-8 me-8">
           <p className="font-semibold text-lg">
             Name: <span className="font-normal">{name}</span>
           </p>
