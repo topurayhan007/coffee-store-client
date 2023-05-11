@@ -59,9 +59,11 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
         </p>
       </div>
       <div className="card-actions px-8 flex-col justify-center items-center gap-4">
-        <button className="btn text-xl px-3 py-2 border-0 text-white bg-[#D2B48C] hover:bg-[#f7d4a6]">
-          <AiFillEye />
-        </button>
+        <Link to={`/viewCoffee/${_id}`}>
+          <button className="btn text-xl px-3 py-2 border-0 text-white bg-[#D2B48C] hover:bg-[#f7d4a6]">
+            <AiFillEye />
+          </button>
+        </Link>
         <Link to={`/updateCoffee/${_id}`}>
           <button className="btn text-xl px-3 py-2 text-white">
             <MdModeEditOutline />
